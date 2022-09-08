@@ -1,6 +1,7 @@
 {% extends "mychatapp/base.html" %}
-
 {% block content %}
+{% load static%}
+<script src="{% static 'js/detail.js' %}"></script>
 <style>
     .forms{
         border: 1px solid slateblue;
@@ -11,7 +12,6 @@
         font-size: 18px;
     }
 </style>
-
 <div class="chat-container2">
     <div class="identity">
         <div>
@@ -35,67 +35,40 @@
           </svg>
            </a>
         </div>
-
         <h3>{{friend.profile.name}}</h3>
 
         <div class="pro-pic">
-            <img src="{{friend.profile.pic.url}}" alt="profile-picture">
+            <img src="{{friend.profile.pic.url}}" alt="profile-picture" id = "{{friend.profile.id}}">
         </div>
-
-
     </div>
 
     <div class="sub-container">
-
-
         <div class="chat-body" id="chat-body">
-
-            
             {% for chat in chats %}
             {% if chat.msg_sender == user and chat.msg_receiver == profile %}
-
             <div class="chat-box-sent">
                 {{chat}}
             </div>
-
             {% elif chat.msg_sender == profile and chat.msg_receiver == user %}
-
             <div class="chat-box-received">
                 {{chat}}
             </div>
-
             {% endif %}
-
-
-
-            
-
             {% endfor %}
-
-
-        
-
             <div class="chat-box-sent" id ="chat-box-sent" style="display: none">
-               
             </div>
-
-            
-        </div>
-    
+        </div>    
         <form action="" id="myform" method="POST">
             {% csrf_token %}
-            
-            <!-- {{form.body}} -->
-            <input type="text" class="time_new_msg" />
+            {{form.body}}
             <button type = "submit" id = "submit">Send</button>
         </form>
-
-
     </div>
 
-   
-
-
-
 </div>
+
 {% endblock %}
+
+
+
+

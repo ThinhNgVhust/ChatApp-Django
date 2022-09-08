@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from .models import ChatMessage
 
 class ChatMessageForm(ModelForm):
-    body = forms.CharField(widget=forms.Textarea(attrs={"class":"forms", "rows":3, "placeholder": "Type message here"}))
+    body = forms.CharField(widget=forms.Textarea(attrs={"class":"forms", "rows":1, "placeholder": "Type message...."}))
     class Meta:
         model = ChatMessage
         fields = ["body",]
