@@ -4,5 +4,6 @@ from . import views
 urlpatterns =[
     path("",views.index,name="index"),
     path("friend/<str:pk>",views.detail,name="detail"),
-    path("friend/sent_msg/<str:pk>",views.sentMessages,name="sent_msg")
+    path("friend/sent_msg/<str:pk>",views.sentMessages,name="sent_msg"),
+    path('friend/rec_msg/<str:pk>', views.receivedMessages, name = "rec_msg"),
 ]

@@ -57,4 +57,38 @@ document.addEventListener("DOMContentLoaded",function(){
         
     }
 
+
+    setInterval(receiveMessages, 2000);
+    function receiveMessages()
+    {
+      
+      const profileId = document.querySelector("img").id;
+      let counter = document.querySelector("img").dataset.num;
+      let url = `rec_msg/${profileId}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+        if(data.length == 0){}
+        else{
+        let lastMsg = data[data.length-1]
+        console.log("unseed")
+            if(counter != data.length){
+                let chat_body = document.getElementById('chat-body')
+                let chatMessageBox = document.createElement("div")
+                
+                chatMessageBox.classList.add("chat-box-received")
+                chatMessageBox.innerText = lastMsg
+                chat_body.append(chatMessageBox)
+                document.getElementById("id_body").value=""
+            }
+        }
+        counter = data.length
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+    }
+
+   
 });
